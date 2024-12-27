@@ -64,9 +64,14 @@ const UploadForm = () => {
     try {
       setLoader(true);
       const response = await axios.post(
-        process.env.HOST_URL,"/api/vedios/upload",
+        `${process.env.REACT_APP_HOST_URL}/api/vedios/upload`,
         data
+       
+        
       );
+      console.log(process.env.REACT_APP_HOST_URL,"dgdsgdsg");
+
+      console.log(response,"jdbsfdsbfbk");
 
       if (response.status === 201) {
         setMessage("Video uploaded successfully!");

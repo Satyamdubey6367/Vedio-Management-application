@@ -9,7 +9,7 @@ const VideoList = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await fetch(process.env.HOST_URL,"/api/vedios/videos");
+        const response = await fetch(`${process.env.REACT_APP_HOST_URL}/api/vedios/videos`);
         const data = await response.json();
         if (response.ok) {
           setVideos(data);
