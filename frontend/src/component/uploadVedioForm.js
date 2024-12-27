@@ -64,7 +64,7 @@ const UploadForm = () => {
     try {
       setLoader(true);
       const response = await axios.post(
-        "http://localhost:4000/api/vedios/upload",
+        process.env.HOST_URL,"/api/vedios/upload",
         data
       );
 

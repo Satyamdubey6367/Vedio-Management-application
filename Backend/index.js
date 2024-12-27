@@ -7,7 +7,7 @@ const connectDB = require("./src/config/Db");
 const router = require("./src/route/vedioRoute");
 
 dotenv.config();
-const port = 4000;
+
 const app = express();
 connectDB();
 
@@ -17,10 +17,10 @@ app.use(cors());
 
 app.use("/api/vedios", router);
 
-app.listen(4000, (error) => {
+app.listen(process.env.PORT, (error) => {
   if (error) {
     console.log("something is wrong");
   }
 
-  console.log(`server is running on port ${port}`);
+  console.log(`server is running on port ${process.env.PORT}`);
 });

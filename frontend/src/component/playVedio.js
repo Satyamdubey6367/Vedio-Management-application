@@ -17,7 +17,7 @@ const VideoPlayer = () => {
     const fetchVideoById = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/api/vedios/video/${videoId}`
+          process.env.HOST_URL,`/api/vedios/video/${videoId}`
         );
         const data = await response.json();
         if (response.ok) {
