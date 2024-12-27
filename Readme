@@ -1,0 +1,181 @@
+# Video Management Application
+
+This project is a **Video Management Application** developed using the **MERN stack** (MongoDB, Express.js, React.js, and Node.js). The application allows users to upload videos along with their titles, descriptions, and thumbnails, which are stored on Cloudinary. Users can then view the uploaded videos, their thumbnails, and play the videos directly.
+
+---
+
+## Project Overview
+### Features:
+1. **Web Page 1 - Upload Page:**
+   - Upload a title (50 characters max).
+   - Add a description (200 characters max).
+   - Upload a thumbnail image (JPG, PNG).
+   - Upload a video (MPG, AVI, MP4).
+   - Files are uploaded to **Cloudinary**, and URLs are saved in the database.
+
+2. **Web Page 2 - Listing Page:**
+   - Display all uploaded videos with their thumbnails and titles.
+   - Clicking on a thumbnail or title redirects to the video player page.
+
+3. **Web Page 3 - Video Player Page:**
+   - Automatically plays the video from the **Cloudinary URL**.
+
+---
+
+## Technologies Used
+- **Frontend:** React.js
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB (Mongoose)
+- **Cloudinary:** For media storage (images/videos)
+
+---
+
+## Setup Instructions
+
+### Backend Setup
+1. Clone the backend repository:
+   ```bash
+   git clone <backend-repo-url>
+   cd backend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env` file in the root directory and add the following:
+   ```env
+   PORT=4000
+   DB_URL=<your-mongodb-uri>
+  
+   ```
+
+4. Start the backend server:
+   ```bash
+   npm run dev
+   ```
+
+5. Backend server will run on `http://localhost:4000`.
+6. formatting the code using 
+   ```
+   npm run format
+
+### Frontend Setup
+1. Clone the frontend repository:
+   ```bash
+   git clone <frontend-repo-url>
+   cd frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Update the `src/api.js` file to point to your backend server:
+   ```javascript
+ 
+   ```
+
+4. Start the frontend server:
+   ```bash
+   npm start
+   ```
+
+5. Frontend server will run on `http://localhost:3000`.
+
+---
+
+## API Endpoints
+### Backend API
+
+#### 1. **POST /api/videos/upload**
+- **Description:** Upload video details (title, description, thumbnail, video).
+- **Request Body:**
+  ```json
+  {
+    "title": "Video Title",
+    "description": "Video Description",
+    "thumbnail": "<Cloudinary Thumbnail URL>",
+    "video": "<Cloudinary Video URL>"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "message": "Video uploaded successfully!",
+    "data": { ... }
+  }
+  ```
+
+#### 2. **GET /api/videos**
+- **Description:** Fetch all videos with their thumbnails and titles.
+- **Response:**
+  ```json
+  [
+    {
+      "_id": "<id>",
+      "title": "Video Title",
+      "thumbnail": "<Cloudinary Thumbnail URL>",
+      "video": "<Cloudinary Video URL>"
+    }
+  ]
+  ```
+
+---
+
+### Frontend Pages
+
+#### Web Page 1: Upload Page
+- Form to upload:
+  - Title
+  - Description
+  - Thumbnail Image
+  - Video File
+- Files are uploaded to Cloudinary, and the resulting URLs are sent to the backend.
+
+#### Web Page 2: Listing Page
+- Fetches the list of videos from the backend and displays:
+  - Title
+  - Thumbnail
+- Clicking on a thumbnail or title navigates to the video player page.
+
+#### Web Page 3: Video Player Page
+- Fetches the video URL from Cloudinary.
+- Automatically plays the video in an HTML5 player.
+
+---
+
+## Cloudinary Configuration
+1. Sign up for a free account at [Cloudinary](https://cloudinary.com).
+2. Create an `upload_preset` for uploading images and videos.
+3. Note down your `Cloud Name`, `API Key`, and `API Secret` for the `.env` file.
+
+---
+
+## Folder Structure
+### Backend:
+```
+backend/
+├── controller/
+│   └── VideoController.js 
+├── models/
+│   └── Video.js        # Mongoose schema for video data
+├── routes/
+│   └── videoRoutes.js  # API routes for video management
+├── .env                 # Environment variables
+├── index.js            # Entry point for the backend server
+```
+
+### Frontend:
+```
+frontend/
+├── src/
+│   ├── components/
+│   │   ├── UploadForm.js       # Form to upload video
+│   │   ├── VideoList.js        # Listing page component
+│   │   ├── VideoPlayer.js      # Video player component
+│  
+│   ├── App.js                  # Main React app
+│   └── index.js                # Entry point for React app
